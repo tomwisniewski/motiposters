@@ -3,7 +3,10 @@ require 'spec_helper'
 describe ProductsController do
 
   before(:each) do
-    @product = Product.create
+    @product = Product.create(
+      :title => "Poster 1",
+      :image => "moti1.jpg",
+      :price => "1100")
   end
 
   describe "POST 'create'" do
@@ -21,9 +24,11 @@ describe ProductsController do
   end
 
   describe "PUT 'update'" do
-    it "returns http success" do
-      put 'update', :id => @product.id
-      response.should redirect_to products_path
+    context "when valid attributes are provided" do
+      it "updates the product and renders the product show page" do
+        put 'update', :id => @product.id, :products => {:price => "1200", :title => "New title"}
+        response.should redirect_to products_path
+      end
     end
   end
 
