@@ -21,8 +21,15 @@ development:
   database: motiposters_development
   host: localhost
   pool: 5
+<<<<<<< HEAD
   username: postgres
   password: <%= ENV["PG_PASS"] %>
+=======
+  username:
+  password:
+  host: localhost
+
+>>>>>>> b8d1317306e7cbb608be1476fa9fd3fbf7325873
 
 test:
   adapter: postgresql
@@ -74,3 +81,15 @@ test:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+<<<<<<< HEAD
+=======
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: motiposters_test
+  host: localhost
+  pool: 5
+  username:
+  password:
+  host: localhost
+>>>>>>> b8d1317306e7cbb608be1476fa9fd3fbf7325873
