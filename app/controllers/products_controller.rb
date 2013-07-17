@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   
   def index
+    @products = Product.all
   end
 
   def create
@@ -12,7 +13,16 @@ class ProductsController < ApplicationController
   end
 
   def update
-    redirect_to products_path
+    @product = Product.find(params[:id])
+    @product.update_attributes(
+      :title => params[:products][:title],
+      :image => params[:products][:image],
+      :price => params[:products][:price])
+    if @product.valid?
+      redirect_to products_path, id: @product.id
+    else
+      render :edit
+    end
   end
 
   def show
