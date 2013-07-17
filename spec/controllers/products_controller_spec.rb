@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe ProductsController do
 
+<<<<<<< HEAD
+=======
   describe "GET 'create'" do
     it "returns http success" do
       post 'create'
@@ -51,4 +53,5 @@ describe ProductsController do
     end
   end
 
+>>>>>>> 6ecbf4563568e13a11cdab4034458ffd046b3474
 end

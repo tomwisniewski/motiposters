@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+
   def create
   end
 
@@ -19,4 +20,5 @@ class ProductsController < ApplicationController
 
   def index
   end
+
 end
