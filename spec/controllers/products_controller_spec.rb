@@ -2,24 +2,24 @@ require 'spec_helper'
 
 describe ProductsController do
 
-  describe "GET 'create'" do
+  describe "POST 'create'" do
     it "returns http success" do
       post 'create'
-      response.should be_success
+      response.should redirect_to products_path
     end
   end
 
-  describe "GET 'destroy'" do
+  describe "DELETE 'destroy'" do
     it "returns http success" do
       delete 'destroy', :id => 1
-      response.should be_success
+      response.should redirect_to products_path
     end
   end
 
-  describe "GET 'update'" do
+  describe "PUT 'update'" do
     it "returns http success" do
       put 'update', :id => 1
-      response.should be_success
+      response.should redirect_to products_path
     end
   end
 
@@ -27,6 +27,7 @@ describe ProductsController do
     it "returns http success" do
       get 'show', :id => 1
       response.should be_success
+      expect(response).to render_template("show")
     end
   end
 
@@ -34,6 +35,7 @@ describe ProductsController do
     it "returns http success" do
       get 'edit', :id => 1
       response.should be_success
+      expect(response).to render_template("edit")
     end
   end
 
@@ -41,6 +43,7 @@ describe ProductsController do
     it "returns http success" do
       get 'new'
       response.should be_success
+      expect(response).to render_template("new")
     end
   end
 
@@ -48,6 +51,7 @@ describe ProductsController do
     it "returns http success" do
       get 'index'
       response.should be_success
+      expect(response).to render_template("index")
     end
   end
 
