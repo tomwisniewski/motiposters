@@ -2,7 +2,7 @@
 
 <h2>Pick a product</h2>
 <% @products.each do | product | %>
-  <h3><%= product.title %></h3>
+  <h3><%= link_to product.title, product_path(product) %></h3>
   <img src=<%= image_url(product.image) %>/>
   <p>£<%= product.price %></p>
 <% end %>
