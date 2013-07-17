@@ -18,8 +18,9 @@ development:
   adapter: postgresql
   encoding: unicode
   database: motiposters_development
+  host: localhost
   pool: 5
-  username: motiposters
+  username: 
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -47,14 +48,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: motiposters_test
+  host: localhost
   pool: 5
-  username: motiposters
-  password:
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: motiposters_production
-  pool: 5
-  username: motiposters
+  username: 
   password:
