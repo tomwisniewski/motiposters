@@ -30,6 +30,12 @@ describe ProductsController do
         response.should redirect_to products_path
       end
     end
+    context "when invalid attributes are provided" do
+      it "shows the edit template instead of redirecting" do
+        put 'update', :id => @product.id, :products => {:price => "blah", :title => "New title"}
+        response.should render_template("edit")
+      end
+    end
   end
 
   describe "GET 'show'" do
