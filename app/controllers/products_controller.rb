@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
   end
 
   def create
+    Product.create!(
+      :title => params[:products][:title],
+      :image => params[:products][:image],
+      :price => params[:products][:price])
     redirect_to products_path
   end
 
@@ -20,7 +24,7 @@ class ProductsController < ApplicationController
     if @product.valid?
       redirect_to products_path, id: @product.id
     else
-      render :edit
+      redirect_to edit_product_path, id: @product.id
     end
   end
 
