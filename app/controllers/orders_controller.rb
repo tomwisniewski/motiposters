@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
   def create
 
-    @amount = Product.find(params[:product_id]).amount
+    @amount = Product.find(params[:product_id]).price
 
     customer = Stripe::Customer.create(
       :email => params[:email], # are we saving to DB? or is this a current user? 
@@ -14,15 +14,12 @@ class OrdersController < ApplicationController
     )    
 
     charge = Stripe::Charge.create(
-      :customer    => :name,
+      :customer    => customer.id,
       :amount      => @amount,
       :description => 'Rails Stripe customer',
       :currency    => 'GBP'
     )
 
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to orders_show_path
 
       order = Order.create!(
         :product_id => params[:product_id],
@@ -32,7 +29,13 @@ class OrdersController < ApplicationController
         :postcode => params[:postcode],
         :city => params[:city]
         )
-
+      # debugger
+    redirect_to order_path(order.id)
+    
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
   end
 
+  def show
+  end
 end

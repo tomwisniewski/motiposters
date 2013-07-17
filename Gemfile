@@ -40,6 +40,7 @@ group :development, :test do
   gem 'growl'
   gem 'capybara'
   gem 'rspec-rails', '~> 2.0'
+  gem "debugger"
 end
 
 # Use ActiveModel has_secure_password
