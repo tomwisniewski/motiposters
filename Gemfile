@@ -32,6 +32,14 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+	gem 'terminal-notifier-guard'
+  gem 'guard-rspec'
+  gem 'growl'
+  gem 'capybara'
+  gem 'rspec-rails', '~> 2.0'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
