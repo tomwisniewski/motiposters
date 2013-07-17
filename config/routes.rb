@@ -1,4 +1,11 @@
 Motiposters::Application.routes.draw do
+  get "products/create"
+  get "products/destroy"
+  get "products/update"
+  get "products/show"
+  get "products/edit"
+  get "products/new"
+  get "products/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
