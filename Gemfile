@@ -35,7 +35,9 @@ group :doc do
 end
 
 group :development, :test do
-	gem 'guard'
+	gem 'terminal-notifier-guard'
+  gem 'guard-rspec'
+  gem 'growl'
   gem 'capybara'
   gem 'rspec-rails', '~> 2.0'
 end

@@ -14,15 +14,45 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+# if ENV['HOME'].include?("HOME=/Users/tboeckmann")
 development:
   adapter: postgresql
   encoding: unicode
   database: motiposters_development
   host: localhost
   pool: 5
-  username: 
-  password:
+  username: postgres
+  password: <%= ENV["PG_PASS"] %>
 
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: motiposters_test
+  host: localhost
+  pool: 5
+  username: postgres
+  password: <%= ENV["PG_PASS"] %>
+# else
+
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: motiposters_development
+#   host: localhost
+#   pool: 5
+#   username: 
+#   password:
+
+#   test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: motiposters_test
+#   host: localhost
+#   pool: 5
+#   username: 
+#   password:
+
+# end
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
@@ -44,11 +74,3 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: motiposters_test
-  host: localhost
-  pool: 5
-  username: 
-  password:

@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     )    
 
     charge = Stripe::Charge.create(
-      :customer    => customer.id,
+      :customer    => :name,
       :amount      => @amount,
       :description => 'Rails Stripe customer',
       :currency    => 'GBP'
@@ -22,7 +22,17 @@ class OrdersController < ApplicationController
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
-      redirect_to orders_path
-    
+      redirect_to orders_show_path
+
+      order = Order.create!(
+        :product_id => params[:product_id],
+        :name => params[:name],
+        :email => params[:email],
+        :street => params[:street],
+        :postcode => params[:postcode],
+        :city => params[:city]
+        )
+
   end
+
 end
