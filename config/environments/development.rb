@@ -26,4 +26,24 @@ Motiposters::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+#EITHER
+  # config.action_mailer.delivery_method = :test
+#OR
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+     address: "smtp.gmail.com",
+     port: 25,
+     enable_starttls_auto: true,
+     user_name: "motiposter",
+     password: ENV["MOTIPOSTER_GMAIL_PASS"],
+     authentication: "plain"
+    }
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true  
+
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
+
 end

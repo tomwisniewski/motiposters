@@ -41,12 +41,21 @@ describe "ordering a product" do
     expect(page).to have_content "John Smith"
   end
 
+  it "should send a confirmation email" do
+    order = FactoryGirl.create(:order)
+    OrderMailer.order_confirmation(order).deliver
+    ActionMailer::Base.deliveries.last.should have_content("Subject: Order Confirmation")
+    ActionMailer::Base.deliveries.last.should have_content("motiposter@gmail.com")
+    ActionMailer::Base.deliveries.last.should have_content("To: john@example.com")
+    ActionMailer::Base.deliveries.last.body.should have_content("#{order.product.title}")
+  end
+
   it "should display all orders" do
     3.times { FactoryGirl.create(:order) }
     @orders = Order.all
     @orders.count.should eq(3)
     visit orders_path
-    expect(page).to have_content "1" #weak
-    expect(page).to have_content "3"
+    expect(page).to have_content "#{@orders.first.id}" #weak
+    expect(page).to have_content "#{@orders.last.id}"
   end
 end
