@@ -7,9 +7,9 @@ class OrdersController < ApplicationController
     @amount = Product.find(params[:product_id]).price
 
     customer = Stripe::Customer.create(
-      :email => params[:email], # are we saving to DB? or is this a current user? 
-      :card  => params[:stripeToken]
-    )    
+      :email => params[:email], # are we saving to DB? or is this a current user?
+      :card  => params[:order][:stripe_card_token]
+    )
 
     charge = Stripe::Charge.create(
       :customer    => customer.id,
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
       )
 
     redirect_to order_path(order.id)
-    
+
     rescue Stripe::CardError => e
       flash[:error] = e.message
   end
