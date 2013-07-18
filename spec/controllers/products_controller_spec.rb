@@ -10,30 +10,34 @@ describe ProductsController do
   end
 
   describe "POST 'create'" do
-    it "returns http success" do
-      post 'create'
-      response.should redirect_to products_path
+    context "when valid product details are provided" do
+      it "adds a product to the database and redirects to the products index page" do
+        expect(Product.count).to eql 1
+        post 'create',  :products => 
+            { :title => "New poster",
+              :image => "moti1.jpg",
+              :price => "1500"}
+        response.should redirect_to products_path
+        expect(Product.count).to eql 2
+      end
     end
   end
 
   describe "DELETE 'destroy'" do
     it "returns http success" do
-      delete 'destroy', :id => @product.id
+      delete 'destroy', :id => @product.id      
       response.should redirect_to products_path
     end
+
   end
 
   describe "PUT 'update'" do
     context "when valid attributes are provided" do
       it "updates the product and renders the product show page" do
+        expect(Product.count).to eql 1
         put 'update', :id => @product.id, :products => {:price => "1200", :title => "New title"}
-        response.should redirect_to products_path
-      end
-    end
-    context "when invalid attributes are provided" do
-      it "shows the edit template instead of redirecting" do
-        put 'update', :id => @product.id, :products => {:price => "blah", :title => "New title"}
-        response.should render_template("edit")
+        expect(Product.count).to eql 1
+        response.should redirect_to product_path(Product.last)
       end
     end
   end
