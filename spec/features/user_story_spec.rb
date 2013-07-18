@@ -24,8 +24,10 @@ end
 
 describe "viewing a product" do
   it "should show a page for the product" do
+    Product.create({:title => "Beard", :image => "moti1.jpg", :price => 57 })
     visit '/'
-    click_link 
+    click_link 'Beard'
+    expect(page).to have_content "MotiPoster - Beard"
   end
 end
 
