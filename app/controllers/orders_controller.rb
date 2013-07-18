@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    create_charge(params[:stripeToken], @order.product.price)
+    create_charge(params[:order][:stripe_card_token], @order.product.price)
     if @order.save!
       OrderMailer.order_confirmation(@order).deliver
       redirect_to order_path(@order.id) 
@@ -37,6 +37,7 @@ private
       :description => 'Rails Stripe customer',
       :currency    => 'GBP'
     )
+
   end
 
 end
