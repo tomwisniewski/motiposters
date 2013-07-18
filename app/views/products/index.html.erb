@@ -2,22 +2,27 @@
   <h1>MotiPosters</h1>
   <p>We're MotiPosters, and guess what we sell?? That's right, Motivational Posters! Have a look below at what we have in stock.</p>
 </div>
-<h2>Products </h2>
 
-  <% @products.each_slice(2) do | product_left, product_right | %>
-    <div class="row" >
-      <div class="span6 home_image">
-        <h3><%= link_to product_left.title, product_path(product_left) %></h3>
-        <p><%= link_to image_tag(product_left.image), product_path(product_left)%></p>
-        <p>£<%= product_left.price %></p>
-      </div>
-      <% if product_right %>
+<div class='row'>
+  <div class='span12'>
+    <h2>Products </h2>
+  </div>
+</div>
+
+<% @products.each_slice(2) do | product_left, product_right | %>
+  <div class="row" >
+    <div class="span6 home_image">
+      <h3><%= link_to product_left.title, product_path(product_left) %></h3>
+      <p><%= link_to image_tag(product_left.image), product_path(product_left)%></p>
+      <p>£<%= product_left.price %></p>
+    </div>
+    <% if product_right %>
       <div class="span6 home_image">
         <h3><%= link_to product_right.title, product_path(product_right) %></h3>
         <p><%= link_to image_tag(product_right.image), product_path(product_right)%></p>
         <p>&pound;<%= product_right.price %></p>
       </div>
-      <% end %>
-    </div>
-  <% end %>
-    
+    <% end %>
+  </div>
+<% end %>
+  
