@@ -1,7 +1,5 @@
 require "stripe"
 
-
-
 class OrdersController < ApplicationController
 
   def create
@@ -20,16 +18,15 @@ class OrdersController < ApplicationController
       :currency    => 'GBP'
     )
 
+    order = Order.create!(
+      :product_id => params[:product_id],
+      :name => params[:name],
+      :email => params[:email],
+      :street => params[:street],
+      :postcode => params[:postcode],
+      :city => params[:city]
+      )
 
-      order = Order.create!(
-        :product_id => params[:product_id],
-        :name => params[:name],
-        :email => params[:email],
-        :street => params[:street],
-        :postcode => params[:postcode],
-        :city => params[:city]
-        )
-      # debugger
     redirect_to order_path(order.id)
     
     rescue Stripe::CardError => e
