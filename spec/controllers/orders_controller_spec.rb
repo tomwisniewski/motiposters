@@ -1,12 +1,15 @@
 require 'spec_helper'
+require 'helpers'
 
+RSpec.configure do |c|
+  c.include Helpers
+end
 
 describe OrdersController do
   describe "creating an order" do
 
     before(:each) do
-      product = FactoryGirl.create(:product)
-
+      product = FactoryGirl.create(:product)      
 
       token = {
         id: "tok_u5dg20Gra",
@@ -20,7 +23,7 @@ describe OrdersController do
         object: "token",
         used: false
       }
-
+      stub_stripe
       post :create, {
         product_id: product.id,
         name: "John Smith",
@@ -40,7 +43,6 @@ describe OrdersController do
     it "should add processed order to database" do      
       Order.last.email.should eq("john@example.com")
     end
-
 
   end
 end
