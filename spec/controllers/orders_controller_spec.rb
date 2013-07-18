@@ -11,18 +11,6 @@ describe OrdersController do
     before(:each) do
       product = FactoryGirl.create(:product)      
 
-      token = {
-        id: "tok_u5dg20Gra",
-        number: '4242424242424242',
-        exp_month: '11',
-        exp_year: '2015',
-        cvc: '423',
-        # name: "John Smith",
-        # address_line1: "City Road",
-        created: 1352222493,
-        object: "token",
-        used: false
-      }
       stub_stripe
       post :create, {
         product_id: product.id,
@@ -32,7 +20,7 @@ describe OrdersController do
         postcode: "NW1 34Q",
         city: "London", 
         price: product.price,
-        stripeToken: token
+        stripeToken: "tok_u5dg20Gra"
       }
     end
     
