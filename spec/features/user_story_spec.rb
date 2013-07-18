@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'capybara/rspec'
 
 describe "viewing posters" do
   it "should show a list of motivational products" do
@@ -24,7 +25,6 @@ end
 
 describe "viewing a product" do
   it "should show a page for the product" do
-    Product.create({:title => "Beard", :image => "moti1.jpg", :price => 57 })
     visit '/'
     click_link 'Beard'
     expect(page).to have_content "MotiPoster - Beard"
@@ -32,7 +32,13 @@ describe "viewing a product" do
 end
 
 describe "ordering a product" do
-  it "should..." do
 
+  it "should show order confirmation" do
+
+    order = Order.create( product_id: Product.find_by(title: "Beard").id, name: "John Smith", email: "john@example.com", street: "City Road", postcode: "NW1 34Q", city: "London" )
+
+    visit order_path(order.id)
+    expect(page).to have_content "Beard"
+    expect(page).to have_content "John Smith"
   end
 end

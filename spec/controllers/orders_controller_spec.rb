@@ -5,7 +5,8 @@ describe OrdersController do
   describe "creating an order" do
 
     before(:each) do
-      product = Product.create(title: "May the force be with you", image: "/public/star_wars.jpg", price: 1000)
+
+      product = Product.find_by(title: "Beard")
 
     token = {
       id: "tok_u5dg20Gra",
@@ -19,7 +20,6 @@ describe OrdersController do
       object: "token",
       used: false
     }
-
       post :create, {
         product_id: product.id,
         name: "John Smith",
@@ -42,7 +42,29 @@ describe OrdersController do
 
       Order.last.email.should eq("john@example.com")
     end
+  end
 
+  describe "show order" do
 
+    before(:each) do
+
+      @product = Product.find_by(title: "Beard")
+    
+    end
+    
+    it "should show order upon completion" do
+
+      order = Order.create(
+        product_id: @product.id,
+        name: "John Smith",
+        email: "john@example.com",
+        street: "City Road",
+        postcode: "NW1 34Q",
+        city: "London" 
+        )
+
+      get 'show', id: order.id
+      expect(page).to render_template :show
+    end
   end
 end
