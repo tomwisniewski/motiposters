@@ -8,9 +8,7 @@ end
 describe OrdersController do
   describe "creating an order" do
 
-    before(:each) do
-      product = FactoryGirl.create(:product)      
-
+    before(:each) do      
       stub_stripe
       post :create, order_params
     end
