@@ -4,9 +4,9 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.new(order_params)
-    create_charge(params[:order][:stripe_card_token ], order.product.price)
     order.save!
-    redirect_to order_path(order)
+    create_charge(params[:order][:stripe_card_token ], order.product.price)
+    redirect_to order_path(order.id)
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to root_url

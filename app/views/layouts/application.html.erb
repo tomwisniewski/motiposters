@@ -4,8 +4,8 @@
   <title>Motiposters</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
-  <%= tag :meta, :name => "stripe-key", :content => :publishable_key  %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/" %>
+  <%= tag :meta, :name => "stripe-key", :content => Rails.configuration.stripe[:publishable_key]  %>
 
   <%= csrf_meta_tags %>
 </head>
@@ -15,10 +15,10 @@
       <div class="container">
         <a class="brand" href="/">MotiPoster</a>
       </div>
-    </div>  
-  </div>  
+    </div>
+  </div>
   <div class="container">
     <%= yield %>
-  </div> 
+  </div>
 </body>
 </html>

@@ -4,8 +4,8 @@
 
 <p>&pound;<%= @product.price %></p>
 
-<%= form_for :order, :url => orders_path do |f| %>
-
+<%= form_for :order, :url => orders_path, :html => { :id => "order_form"} do |f| %>
+  <%= f.hidden_field :product_id, :value => params[:id] %>
   <%= f.label :name, "Name" %>
   <%= f.text_field :name %>
   <%= f.label :email, "Email" %>
@@ -17,6 +17,7 @@
   <%= f.label :postcode, "Postcode" %>
   <%= f.text_field :postcode %>
   <%= f.hidden_field :stripe_card_token %>
+  <div id="stripe_error"></div>
   <%= label_tag :card_number, "Credit Card Number" %>
   <%= text_field_tag :card_number, nil, name: nil %>
   <%= f.label :card_code, "Security Code on Card (CVV)" %>
