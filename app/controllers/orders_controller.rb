@@ -1,7 +1,5 @@
 require "stripe"
 
-
-
 class OrdersController < ApplicationController
 
   def create
@@ -23,6 +21,7 @@ class OrdersController < ApplicationController
       :postcode => params[:postcode],
       :city => params[:city]
       )
+
     redirect_to order_path(order.id)
     
     rescue Stripe::CardError => e
