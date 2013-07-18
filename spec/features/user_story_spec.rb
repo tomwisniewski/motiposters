@@ -5,7 +5,7 @@ describe "viewing posters" do
   it "should show a list of motivational products" do
     visit '/'
     expect(page).to have_content "MotiPoster"
-    expect(page).to have_content "Pick a product"
+    expect(page).to have_content "Products"
   end
 end
 
