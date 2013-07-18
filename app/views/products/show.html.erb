@@ -1,5 +1,11 @@
+<%= link_to("Back to all products", {:controller => "products", :action => "index"}, {:method => :get, :class => "btn"}) %>
+
 <h2>MotiPoster - <%= @product.title %></h2>
 
 <img src=<%= image_url(@product.image) %>/>
 
 <p>&pound;<%= @product.price %></p>
+
+<%= button_to "Edit", {:action => :edit, :id => @product.id },  { method: :get, :class => "btn" } %>
+<%= button_to "Delete", @product,  {method: :delete, :class => "btn"} %>
+

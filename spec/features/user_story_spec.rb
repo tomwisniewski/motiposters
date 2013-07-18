@@ -1,9 +1,10 @@
 require 'spec_helper'
 require 'capybara/rspec'
 
+
 describe "viewing posters" do
   it "should show a list of motivational products" do
-    visit '/'
+    visit '/products'
     expect(page).to have_content "MotiPoster"
     expect(page).to have_content "Products"
   end
@@ -19,21 +20,66 @@ end
 
 describe "deleting products" do
   it "should remove products from the list of products" do
-    
+    product = FactoryGirl.create(:product)
+    visit '/products'
+    click_link product.title
+    expect(Product.count).to eql 1
+    click_button "Delete"
+    expect(Product.count).to eql 0
+    expect(page).to have_content "MotiPoster"
+    expect(page).to have_content "Products"
+    expect(page).to have_no_content product.title
   end
 end
 
 describe "viewing a product" do
-  it "should show a page for the product" do
+  before(:each) do
+    @product = FactoryGirl.create(:product)
+  end
+
+  it "should show a page for the product" do 
+    visit '/products' 
+    click_link @product.title
+    expect(page).to have_content "MotiPoster - #{@product.title}"
+  end
+
+  context "when finished viewing" do
+    it "user can navigate back to the list of all products" do
+      visit '/products'
+      click_link @product.title
+      click_link "Back to all products"
+      expect(page).to have_content "MotiPoster"
+      expect(page).to have_content "Products"
+    end
+  end
+end
+
+describe "editing a single product" do
+  it "shows the poster details" do
     product = FactoryGirl.create(:product)
-    visit '/'
-    click_link product.title
-    expect(page).to have_content "MotiPoster - #{product.title}"
+    visit '/products/' + product.id.to_s
+    expect(page).to have_content product.title
+    click_button "Edit"
+    expect(page).to have_content "Edit Product"
+  end
+end
+
+describe "adding a new product" do
+  it "should add a new poster to the database" do
+    visit '/products'
+    click_link "Add a product"
+    expect(page).to have_content "Add New Product"
+    fill_in "Title", :with => "May the force be with you"
+    fill_in "Image", :with => "moti1.jpg"
+    fill_in "Price", :with => "1100"
+    expect(Product.count).to eql 0
+    click_button "Create Product"
+    expect(Product.count).to eql 1
+    expect(page).to have_content "May the force be with you"
   end
 end
 
 describe "ordering a product" do
-
   it "should show order confirmation" do
     order = FactoryGirl.create(:order)
     visit order_path(order)
