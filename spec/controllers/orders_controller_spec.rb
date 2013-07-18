@@ -12,16 +12,7 @@ describe OrdersController do
       product = FactoryGirl.create(:product)      
 
       stub_stripe
-      post :create, {
-        product_id: product.id,
-        name: "John Smith",
-        email: "john@example.com",
-        street: "City Road",
-        postcode: "NW1 34Q",
-        city: "London", 
-        price: product.price,
-        stripeToken: "tok_u5dg20Gra"
-      }
+      post :create, order_params
     end
     
     it "should have no error messages" do

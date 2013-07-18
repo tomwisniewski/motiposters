@@ -25,7 +25,7 @@ describe ProductsController do
 
   describe "DELETE 'destroy'" do
     it "returns http success" do
-      delete 'destroy', :id => @product.id
+      delete 'destroy', :id => @product.id      
       response.should redirect_to products_path
     end
 
