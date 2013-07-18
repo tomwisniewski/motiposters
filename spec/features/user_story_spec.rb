@@ -40,4 +40,13 @@ describe "ordering a product" do
     expect(page).to have_content "May the force be with you"
     expect(page).to have_content "John Smith"
   end
+
+  it "should display all orders" do
+    3.times { FactoryGirl.create(:order) }
+    @orders = Order.all
+    @orders.count.should eq(3)
+    visit orders_path
+    expect(page).to have_content "1" #weak
+    expect(page).to have_content "3"
+  end
 end

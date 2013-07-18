@@ -1,1 +1,39 @@
 <h1>All Orders</h1>
+
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>
+        Order ID
+      </td>
+      <td>
+        Name
+      </td>
+      <td>
+        Delivery Address
+      </td>
+      <td>
+        Postcode
+      </td>
+      <td>
+        Product
+      </td>
+    </tr>
+    <%= @orders.each do |order| %>
+      <tr>
+        <td>
+          <%= order.id %>
+        </td>
+        <td>
+          <%= order.name %>
+        </td>
+        <td>
+          <%= order.street %>
+          <%= order.postcode %>
+          <%= order.city %>
+        </td>
+        <td><%= Product.find(order.product_id).title %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -32,20 +32,12 @@ describe Order do
   end
 
   describe "when email format is valid" do
-      it "should be valid" do
-        addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
-        addresses.each do |valid_address|
-          @order.email = valid_address
-          expect(@order).to be_valid
-        end
+    it "should be valid" do
+      addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+      addresses.each do |valid_address|
+        @order.email = valid_address
+        expect(@order).to be_valid
       end
     end
-
-    describe "when email address is already taken" do
-    before do
-      order_with_same_email = @order.dup
-      order_with_same_email.save
-    end
-    it {should_not be_valid}
   end
 end
