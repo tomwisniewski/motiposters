@@ -7,11 +7,8 @@ development:
   database: motiposters_development
   host: localhost
   pool: 5
-# NOT TIM??? THEN TRY THIS:
-  # username: 
-  # password: 
-  username: postgres
-  password: <%= ENV["PG_PASS"] %>
+  username: 
+  password: 
 
 
 test:
@@ -20,8 +17,5 @@ test:
   database: motiposters_test
   host: localhost
   pool: 5
-# NOT TIM??? THEN TRY THIS:
-  # username: 
-  # password: 
-  username: postgres
-  password: <%= ENV["PG_PASS"] %>
+  username: 
+  password: 
