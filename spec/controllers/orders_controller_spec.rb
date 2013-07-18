@@ -40,5 +40,10 @@ describe OrdersController do
       get 'show', id: order.id
       expect(page).to render_template :show
     end
+
+    it "should show all orders" do
+      get :index
+      expect(page).to render_template :index
+    end
   end
 end
