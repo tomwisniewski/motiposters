@@ -23,20 +23,9 @@ describe OrdersController do
   end
 
   describe "show order" do
-
-    before(:each) do
-      @product = Product.find_by(title: "Beard")
-    end
     
     it "should show order upon completion" do
-      order = Order.create(
-        product_id: @product.id,
-        name: "John Smith",
-        email: "john@example.com",
-        street: "City Road",
-        postcode: "NW1 34Q",
-        city: "London" 
-        )
+      order = FactoryGirl.create(:order)
       get 'show', id: order.id
       expect(page).to render_template :show
     end

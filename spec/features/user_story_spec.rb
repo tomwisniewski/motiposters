@@ -5,7 +5,7 @@ describe "viewing posters" do
   it "should show a list of motivational products" do
     visit '/'
     expect(page).to have_content "MotiPoster"
-    expect(page).to have_content "Pick a product"
+    expect(page).to have_content "Products"
   end
 end
 
@@ -25,20 +25,19 @@ end
 
 describe "viewing a product" do
   it "should show a page for the product" do
+    product = FactoryGirl.create(:product)
     visit '/'
-    click_link 'Beard'
-    expect(page).to have_content "MotiPoster - Beard"
+    click_link product.title
+    expect(page).to have_content "MotiPoster - #{product.title}"
   end
 end
 
 describe "ordering a product" do
 
   it "should show order confirmation" do
-
-    order = Order.create( product_id: Product.find_by(title: "Beard").id, name: "John Smith", email: "john@example.com", street: "City Road", postcode: "NW1 34Q", city: "London" )
-
-    visit order_path(order.id)
-    expect(page).to have_content "Beard"
+    order = FactoryGirl.create(:order)
+    visit order_path(order)
+    expect(page).to have_content "May the force be with you"
     expect(page).to have_content "John Smith"
   end
 end

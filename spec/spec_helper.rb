@@ -20,7 +20,7 @@ RSpec.configure do |config|
   config.before(:all) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
-    load "#{Rails.root}/db/seeds.rb" 
+    # load "#{Rails.root}/db/seeds.rb" 
   end
   
   config.before(:each) do

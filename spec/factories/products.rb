@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :product do  	
-	title "May the force be with you"
-	image "/public/star_wars.jpg"
-	price 1000  	
+	  title "May the force be with you"
+    image "/public/star_wars.jpg"
+    price 1000  	
   end
 end
