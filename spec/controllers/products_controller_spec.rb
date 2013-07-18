@@ -3,10 +3,7 @@ require 'spec_helper'
 describe ProductsController do
 
   before(:each) do
-    @product = Product.create(
-      :title => "Poster 1",
-      :image => "moti1.jpg",
-      :price => "1100")
+    @product = FactoryGirl.create(:product)
   end
 
   describe "POST 'create'" do
@@ -22,6 +19,7 @@ describe ProductsController do
       end
     end
   end
+
 
   describe "DELETE 'destroy'" do
     it "returns http success" do
