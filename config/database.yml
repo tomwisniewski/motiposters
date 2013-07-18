@@ -4,8 +4,8 @@ development:
   database: motiposters_development
   host: localhost
   pool: 5
-  username: 
-  password: 
+  username: postgres
+  password: <%= ENV['PG_PASS']
 
 
 test:
@@ -14,5 +14,5 @@ test:
   database: motiposters_test
   host: localhost
   pool: 5
-  username: 
-  password: 
+  username: postgres
+  password: <%= ENV['PG_PASS']
