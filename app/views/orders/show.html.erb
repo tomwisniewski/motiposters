@@ -1,1 +1,44 @@
-show orders
+<h1>Order Confirmation</h1>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <td>
+        Order ID
+      </td>
+      <td>
+        <%= @order.id %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        <%= @order.name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Delivery Address
+      </td>
+      <td>
+        <%= @order.street %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Postcode
+      </td>
+      <td>
+        <%= @order.postcode %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Product
+      </td>
+      <td><%= @order.product.title %> </td>
+    </tr>
+  </tbody>
+</table>

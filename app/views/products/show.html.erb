@@ -2,7 +2,7 @@
 
 <%= image_tag(@product.image) %>
 
-<p>£<%= @product.price %></p>
+<p>&pound;<%= @product.price %></p>
 
 <%= form_for :order, :url => orders_path do |f| %>
 
@@ -28,3 +28,4 @@
 
 
 <% end %>
+

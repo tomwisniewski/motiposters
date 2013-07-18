@@ -3,36 +3,37 @@ require "stripe"
 class OrdersController < ApplicationController
 
   def create
+    order = Order.new(order_params)
+    create_charge(params[:order][:stripe_card_token ], order.product.price)
+    order.save!
+    redirect_to order_path(order)
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to root_url
+  end
 
-    @amount = Product.find(params[:product_id]).price
+  def show
+    @order = Order.find(params[:id])
+  end
 
-    customer = Stripe::Customer.create(
-      :email => params[:email], # are we saving to DB? or is this a current user?
-      :card  => params[:order][:stripe_card_token]
-    )
+  def index
+    @orders = Order.all
+  end
 
+private
+
+  def order_params
+    params.require(:order).permit(:product_id, :name, :email, :street, :postcode, :city)
+  end
+
+  def create_charge(token, amount)
     charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
+      :card        => token,
+      :amount      => amount,
       :description => 'Rails Stripe customer',
       :currency    => 'GBP'
     )
 
-    order = Order.create!(
-      :product_id => params[:product_id],
-      :name => params[:name],
-      :email => params[:email],
-      :street => params[:street],
-      :postcode => params[:postcode],
-      :city => params[:city]
-      )
-
-    redirect_to order_path(order.id)
-
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
   end
 
-  def show
-  end
 end

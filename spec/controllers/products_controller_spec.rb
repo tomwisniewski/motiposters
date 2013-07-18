@@ -13,7 +13,7 @@ describe ProductsController do
     context "when valid product details are provided" do
       it "adds a product to the database and redirects to the products index page" do
         expect(Product.count).to eql 1
-        post 'create',  :products => 
+        post 'create',  :product => 
             { :title => "New poster",
               :image => "moti1.jpg",
               :price => "1500"}
@@ -25,7 +25,7 @@ describe ProductsController do
 
   describe "DELETE 'destroy'" do
     it "returns http success" do
-      delete 'destroy', :id => @product.id
+      delete 'destroy', :id => @product.id      
       response.should redirect_to products_path
     end
 
@@ -35,10 +35,9 @@ describe ProductsController do
     context "when valid attributes are provided" do
       it "updates the product and renders the product show page" do
         expect(Product.count).to eql 1
-        put 'update', :id => @product.id, :products => 
-        {:price => "1200", :title => "New title"}
+        put 'update', :id => @product.id, :product => {:price => "1200", :title => "New title"}
         expect(Product.count).to eql 1
-        response.should redirect_to products_path
+        response.should redirect_to product_path(Product.last)
       end
     end
   end

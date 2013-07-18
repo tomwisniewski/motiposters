@@ -8,32 +8,9 @@ end
 describe OrdersController do
   describe "creating an order" do
 
-    before(:each) do
-      product = FactoryGirl.create(:product)      
-
-      token = {
-        id: "tok_u5dg20Gra",
-        number: '4242424242424242',
-        exp_month: '11',
-        exp_year: '2015',
-        cvc: '423',
-        # name: "John Smith",
-        # address_line1: "City Road",
-        created: 1352222493,
-        object: "token",
-        used: false
-      }
+    before(:each) do      
       stub_stripe
-      post :create, {
-        product_id: product.id,
-        name: "John Smith",
-        email: "john@example.com",
-        street: "City Road",
-        postcode: "NW1 34Q",
-        city: "London", 
-        price: product.price,
-        stripeToken: token
-      }
+      post :create, order_params
     end
     
     it "should have no error messages" do
@@ -43,6 +20,19 @@ describe OrdersController do
     it "should add processed order to database" do      
       Order.last.email.should eq("john@example.com")
     end
+  end
 
+  describe "show order" do
+    
+    it "should show order upon completion" do
+      order = FactoryGirl.create(:order)
+      get 'show', id: order.id
+      expect(page).to render_template :show
+    end
+
+    it "should show all orders" do
+      get :index
+      expect(page).to render_template :index
+    end
   end
 end

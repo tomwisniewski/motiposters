@@ -1,6 +1,3 @@
-
-
-
 development:
   adapter: postgresql
   encoding: unicode
@@ -8,7 +5,7 @@ development:
   host: localhost
   pool: 5
   username: 
-  password: 
+  password: <%= ENV['PG_PASS'] %>
 
 
 test:
@@ -18,5 +15,4 @@ test:
   host: localhost
   pool: 5
   username: 
-  password: 
-
+  password: <%= ENV['PG_PASS'] %>
