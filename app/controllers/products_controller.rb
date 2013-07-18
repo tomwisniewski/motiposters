@@ -6,9 +6,9 @@ class ProductsController < ApplicationController
 
   def create
     Product.create!(
-      :title => params[:products][:title],
-      :image => params[:products][:image],
-      :price => params[:products][:price].to_i)
+      :title => params[:product][:title],
+      :image => params[:product][:image],
+      :price => params[:product][:price])
     redirect_to products_path
   end
 
@@ -19,9 +19,9 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     @product.update_attributes(
-      :title => params[:products][:title],
-      :image => params[:products][:image],
-      :price => params[:products][:price].to_i)
+      :title => params[:product][:title],
+      :image => params[:product][:image],
+      :price => params[:product][:price])
     if @product.valid?
       redirect_to products_path, id: @product.id
     else
