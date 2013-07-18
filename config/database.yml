@@ -5,7 +5,7 @@ development:
   host: localhost
   pool: 5
   username: postgres
-  password: <%= ENV['PG_PASS']
+  password: <%= ENV['PG_PASS'] %>
 
 
 test:
@@ -15,4 +15,4 @@ test:
   host: localhost
   pool: 5
   username: postgres
-  password: <%= ENV['PG_PASS']
+  password: <%= ENV['PG_PASS'] %>
