@@ -1,5 +1,9 @@
 <h2>MotiPoster - <%= @product.title %></h2>
 
-<img src=<%= image_url(@product.image) %>/>
+<%= image_tag(@product.image) %>
 
 <p>£<%= @product.price %></p>
+<!--
+<% form_tag orders_path  %> -->
+  <!-- <article>
+    <label class="price"> -->
