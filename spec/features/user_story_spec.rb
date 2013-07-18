@@ -1,10 +1,11 @@
 require 'spec_helper'
+require 'capybara/rspec'
 
 describe "viewing posters" do
   it "should show a list of motivational products" do
     visit '/'
     expect(page).to have_content "MotiPoster"
-    expect(page).to have_content "Pick a product"
+    expect(page).to have_content "Products"
   end
 end
 
@@ -24,15 +25,28 @@ end
 
 describe "viewing a product" do
   it "should show a page for the product" do
-    Product.create({:title => "Beard", :image => "moti1.jpg", :price => 57 })
+    product = FactoryGirl.create(:product)
     visit '/'
-    click_link 'Beard'
-    expect(page).to have_content "MotiPoster - Beard"
+    click_link product.title
+    expect(page).to have_content "MotiPoster - #{product.title}"
   end
 end
 
 describe "ordering a product" do
-  it "should..." do
 
+  it "should show order confirmation" do
+    order = FactoryGirl.create(:order)
+    visit order_path(order)
+    expect(page).to have_content "May the force be with you"
+    expect(page).to have_content "John Smith"
+  end
+
+  it "should display all orders" do
+    3.times { FactoryGirl.create(:order) }
+    @orders = Order.all
+    @orders.count.should eq(3)
+    visit orders_path
+    expect(page).to have_content "1" #weak
+    expect(page).to have_content "3"
   end
 end

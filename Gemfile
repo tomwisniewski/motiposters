@@ -35,12 +35,14 @@ group :doc do
 end
 
 group :development, :test do
-	gem 'terminal-notifier-guard'
+  gem 'terminal-notifier-guard'
   gem 'guard-rspec'
   gem 'growl'
   gem 'capybara'
   gem 'rspec-rails', '~> 2.0'
   gem "debugger"
+  gem "database_cleaner"
+  gem "factory_girl_rails"
 end
 
 # Use ActiveModel has_secure_password

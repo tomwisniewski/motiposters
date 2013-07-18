@@ -5,10 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    Product.create!(
-      :title => params[:product][:title],
-      :image => params[:product][:image],
-      :price => params[:product][:price])
+    Product.create!(product_params)
     redirect_to products_path
   end
 
@@ -17,15 +14,11 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
-    @product.update_attributes(
-      :title => params[:product][:title],
-      :image => params[:product][:image],
-      :price => params[:product][:price])
-    if @product.valid?
-      redirect_to products_path, id: @product.id
+    @product = Product.find(params[:id])    
+    if @product.update_attributes(product_params)      
+      redirect_to product_path(@product)
     else
-      redirect_to edit_product_path, id: @product.id
+      redirect_to edit_product_path(@product)
     end
   end
 
@@ -39,6 +32,12 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+  end
+
+private
+
+  def product_params
+    params.require(:product).permit(:title, :image, :price)
   end
 
 end
