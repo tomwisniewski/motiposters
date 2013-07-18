@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "viewing posters" do
   it "should show a list of motivational products" do
     visit '/'
-    expect(page).to have_content "Products"
+    expect(page).to have_content "MotiPoster"
     expect(page).to have_content "Pick a product"
   end
 end
@@ -24,7 +24,8 @@ end
 
 describe "viewing a product" do
   it "should show a page for the product" do
-    
+    visit '/'
+    click_link 
   end
 end
 

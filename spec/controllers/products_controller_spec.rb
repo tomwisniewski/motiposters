@@ -17,20 +17,8 @@ describe ProductsController do
             { :title => "New poster",
               :image => "moti1.jpg",
               :price => "1500"}
-        expect(Product.count).to eql 2
         response.should redirect_to products_path
-      end
-    end
-
-    context " when INvalid product details are given" do
-      it "does not add to the database and redirects to the new page" do
-        expect(Product.count).to eql 1
-        post 'create',  :products => 
-            { :title => 1,
-              :image => "moti1.jpg",
-              :price => "fourteen pounds"}
-        expect(Product.count).to eql 1
-        response.should redirect_to new_product_path
+        expect(Product.count).to eql 2
       end
     end
   end
@@ -46,20 +34,11 @@ describe ProductsController do
   describe "PUT 'update'" do
     context "when valid attributes are provided" do
       it "updates the product and renders the product show page" do
-        put 'update', :id => @product.id, :products => {:price => "1200", :title => "New title"}
+        expect(Product.count).to eql 1
+        put 'update', :id => @product.id, :products => 
+        {:price => "1200", :title => "New title"}
+        expect(Product.count).to eql 1
         response.should redirect_to products_path
-      end
-    end
-
-    context " when INvalid product details are given" do
-      it "does not update the database and redirects to the edit page" do
-        expect(Product.count).to eql 1
-        post 'create',  :products => 
-            { :title => 1,
-              :image => "moti1.jpg",
-              :price => "fourteen pounds"}
-        expect(Product.count).to eql 1
-        response.should redirect_to edit_product_path
       end
     end
   end
