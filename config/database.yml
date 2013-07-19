@@ -4,7 +4,7 @@ development:
   database: motiposters_development
   host: localhost
   pool: 5
-  username: 
+  username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
 
 
@@ -14,5 +14,5 @@ test:
   database: motiposters_test
   host: localhost
   pool: 5
-  username: 
+  username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>

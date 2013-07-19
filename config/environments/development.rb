@@ -27,6 +27,7 @@ Motiposters::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
@@ -36,4 +37,24 @@ Motiposters::Application.configure do
       :secret_access_key => ENV["S3_MOTIPOSTER_SECRET_ACCESS_KEY"]
     }
   }
+
+#EITHER
+  # config.action_mailer.delivery_method = :test
+#OR
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+     address: "smtp.gmail.com",
+     port: 25,
+     enable_starttls_auto: true,
+     user_name: "motiposter",
+     password: ENV["MOTIPOSTER_GMAIL_PASS"],
+     authentication: "plain"
+    }
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
+
 end

@@ -2,11 +2,15 @@ require "stripe"
 
 class OrdersController < ApplicationController
 
-  def create    
-    order = Order.new(order_params)
-    create_charge(params[:stripeToken], order.product.price)
-    order.save!
-    redirect_to order_path(order)    
+  def create
+    @order = Order.new(order_params)
+    create_charge(params[:order][:stripe_card_token], @order.product.price)
+    if @order.save!
+      OrderMailer.order_confirmation(@order).deliver
+      redirect_to order_path(@order) 
+    else
+      redirect_to product_path(@order.product)
+    end
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to root_url
@@ -33,6 +37,7 @@ private
       :description => 'Rails Stripe customer',
       :currency    => 'GBP'
     )
+
   end
 
 end

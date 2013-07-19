@@ -1,5 +1,39 @@
+<%= link_to("Back to all products", {:controller => "products", :action => "index"}, {:method => :get, :class => "btn"}) %>
+
 <h2>MotiPoster - <%= @product.title %></h2>
 
-<img src=<%= image_url(@product.image) %>/>
+<%= image_tag(@product.avatar.url(:medium)) %>
 
 <p>&pound;<%= @product.price %></p>
+
+
+<%= form_for :order, :url => orders_path, :html => { :id => "order_form"} do |f| %>
+  <%= f.hidden_field :product_id, :value => params[:id] %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email %>
+  <%= f.label :street, "Street" %>
+  <%= f.text_field :street %>
+  <%= f.label :city, "City" %>
+  <%= f.text_field :city %>
+  <%= f.label :postcode, "Postcode" %>
+  <%= f.text_field :postcode %>
+  <%= f.hidden_field :stripe_card_token %>
+  <div id="stripe_error"></div>
+  <%= label_tag :card_number, "Credit Card Number" %>
+  <%= text_field_tag :card_number, nil, name: nil %>
+  <%= f.label :card_code, "Security Code on Card (CVV)" %>
+  <%= text_field_tag :card_code, nil, name: nil %>
+  <%= f.label :card_month, "Card Expiration" %>
+  <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+  <%= f.submit %>
+
+
+<% end %>
+
+
+<%= button_to "Edit", {:action => :edit, :id => @product.id },  { method: :get, :class => "btn" } %>
+<%= button_to "Delete", @product,  {method: :delete, :class => "btn"} %>
+
