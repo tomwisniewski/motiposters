@@ -65,12 +65,13 @@ describe "editing a single product" do
 end
 
 describe "adding a new product" do
+
   it "should add a new poster to the database" do
     visit '/products'
     click_link "Upload a Poster"
     expect(page).to have_content "Upload a Poster"
-    fill_in "Title", :with => "May the force be with you"
-    fill_in "Image", :with => "moti1.jpg"
+    fill_in "Title", :with => "May the force be with you"    
+    attach_file "product[avatar]", 'spec/fixtures/test.png'
     fill_in "Price", :with => "1100"
     expect(Product.count).to eql 0
     click_button "Create Product"
