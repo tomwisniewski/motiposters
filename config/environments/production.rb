@@ -77,6 +77,17 @@ Motiposters::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'motiposter',
+      #:s3_permissions => 'authenticated_read',
+      :access_key_id => ENV["S3_MOTIPOSTER_SECRET_KEY_ID"],
+      :secret_access_key => ENV["S3_MOTIPOSTER_SECRET_ACCESS_KEY"]
+    }
+  }
+
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {

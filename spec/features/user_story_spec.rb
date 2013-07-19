@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'capybara/rspec'
 
-
 describe "viewing posters" do
   it "should show a list of motivational products" do
     visit '/products'

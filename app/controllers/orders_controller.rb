@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     # debugger
-    # @order.product = Product.find(params[:order][:product_id])    
+    # @order.product = Product.find(params[:order][:product_id])
     create_charge(params[:order][:stripe_card_token], @order.product.price)
     if @order.save
       OrderMailer.order_confirmation(@order).deliver

@@ -1,28 +1,30 @@
-<h1>Order Confirmation</h1>
-
-<table class="table">
-  <tbody>
-    <tr>
-      <td>
-        Order ID
-      </td>
-      <td><%= @order.id %></td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td><%= @order.name %></td>
-    </tr>
-    <tr>
-      <td>Delivery Address</td>
-      <td><%= @order.street %></td>
-    </tr>
-    <tr>
-      <td>Postcode</td>
-      <td><%= @order.postcode %></td>
-    </tr>
-    <tr>
-      <td>Product</td>
-      <td><%= @order.product.title %> </td>
-    </tr>
-  </tbody>
-</table>
+<div class="offset3 span6">
+  <h1>Order Confirmation</h1>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td colspan="2"><%= image_tag(@order.product.avatar.url(:thumb)) %></td>
+      </tr>
+      <tr>
+        <td>Order ID</td>
+        <td><%= @order.id %></td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td><%= @order.product.title %> </td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><%= @order.name %></td>
+      </tr>
+      <tr>
+        <td>Delivery Address</td>
+        <td><%= @order.street %></td>
+      </tr>
+      <tr>
+        <td>Postcode</td>
+        <td><%= @order.postcode %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
