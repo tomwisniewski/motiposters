@@ -88,8 +88,8 @@ describe "ordering a product" do
   end
 
   it "should send a confirmation email" do
-    order = FactoryGirl.create(:order)
-    OrderMailer.order_confirmation(order).deliver
+    order = FactoryGirl.create(:order)    
+    expect(ActionMailer::Base.deliveries.count).to eq(1)
     ActionMailer::Base.deliveries.last.should have_content("Subject: Order Confirmation")
     ActionMailer::Base.deliveries.last.should have_content("motiposter@gmail.com")
     ActionMailer::Base.deliveries.last.should have_content("To: john@example.com")

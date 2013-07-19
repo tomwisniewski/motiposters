@@ -1,38 +1,32 @@
 <h1>All Orders</h1>
 
 <table class="table table-striped">
+  <thead>
+    <th>Order ID</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Postcode</th>
+    <th>Product</th>
+  </thead>
   <tbody>
-    <tr>
-      <td>
-        Order ID
-      </td>
-      <td>
-        Name
-      </td>
-      <td>
-        Delivery Address
-      </td>
-      <td>
-        Postcode
-      </td>
-      <td>
-        Product
-      </td>
-    </tr>
     <% @orders.each do |order| %>
       <tr>
         <td>
-          <%= order.id %>
+          <%= link_to "Order #{order.id}", order_path(order) %>
         </td>
         <td>
           <%= order.name %>
         </td>
         <td>
-          <%= order.street %>
-          <%= order.postcode %>
+          <%= order.street %>          
           <%= order.city %>
         </td>
-        <td><%= Product.find(order.product_id).title %> </td>
+        <td>
+          <%= order.postcode %>
+        </td>
+        <td>
+          <%= order.product.title %>
+        </td>
       </tr>
     <% end %>
   </tbody>
