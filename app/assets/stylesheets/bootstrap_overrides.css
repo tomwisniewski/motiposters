@@ -25,7 +25,15 @@ body {
 	width: 50%;
 	line-height: normal;
 	margin-top: 15px;
+	margin-bottom: 15px;
 }
 .navbar .nav {
 	float: right;
+}
+
+.well {
+padding: 0px;
+margin-top: -10px;
+margin-bottom: 15px;
+background-color: #000000;
 }

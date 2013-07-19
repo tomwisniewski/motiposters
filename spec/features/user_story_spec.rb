@@ -5,8 +5,8 @@ require 'capybara/rspec'
 describe "viewing posters" do
   it "should show a list of motivational products" do
     visit '/products'
-    expect(page).to have_content "MotiPoster"
-    expect(page).to have_content "Products"
+    expect(page).to have_content "Upload a Poster"
+    expect(page).to have_content "sell?"
   end
 end
 
@@ -26,8 +26,8 @@ describe "deleting products" do
     expect(Product.count).to eql 1
     click_button "Delete"
     expect(Product.count).to eql 0
-    expect(page).to have_content "MotiPoster"
-    expect(page).to have_content "Products"
+    expect(page).to have_content "Upload a Poster"
+    expect(page).to have_content "sell?"
     expect(page).to have_no_content product.title
   end
 end
@@ -48,8 +48,8 @@ describe "viewing a product" do
       visit '/products'
       click_link @product.title
       click_link "Back to all products"
-      expect(page).to have_content "MotiPoster"
-      expect(page).to have_content "Products"
+      expect(page).to have_content "Upload a Poster"
+      expect(page).to have_content "sell?"
     end
   end
 end
@@ -67,8 +67,8 @@ end
 describe "adding a new product" do
   it "should add a new poster to the database" do
     visit '/products'
-    click_link "Add a product"
-    expect(page).to have_content "Add New Product"
+    click_link "Upload a Poster"
+    expect(page).to have_content "Upload a Poster"
     fill_in "Title", :with => "May the force be with you"
     fill_in "Image", :with => "moti1.jpg"
     fill_in "Price", :with => "1100"
