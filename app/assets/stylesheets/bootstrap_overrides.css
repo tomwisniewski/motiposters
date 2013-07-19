@@ -6,6 +6,19 @@ body {
 	text-align: center;
 }
 
-.hero-unit h1 {
+.hero-unit {
+	background-image: url(http://www.picomazing.com/wp-content/uploads/2013/05/Vector-design-wallpaper-background-large-new-9.jpg); 
+}
+
+.hero-unit h1 { 
+	color: white;
 	font-size: 40px;
+}
+
+.hero-unit p { 
+	color: white;
+	font-size: 18px;
+}
+.navbar .nav {
+	float: right;
 }

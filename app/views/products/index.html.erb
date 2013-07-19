@@ -3,8 +3,7 @@
   <p>We're MotiPosters, and guess what we sell?? That's right, Motivational Posters! Have a look below at what we have in stock.</p>
 </div>
 
-<h2>Products </h2>
-<%= link_to "Add a product", {:action => :new}, {:method => :get, :class => "btn"} %>
+<h2>Posters</h2>
   <% @products.each_slice(2) do | product_left, product_right | %>
     <div class="row" >
       <div class="span6 home_image">
