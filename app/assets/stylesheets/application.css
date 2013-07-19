@@ -14,10 +14,4 @@
  *= require_tree .
  */
  
-.home_image{
-text-align: center;
-}
-
-body{
-  padding-top: 40px;
-}
+/* Guys, don't put css in here. Put it in overrides.css */
