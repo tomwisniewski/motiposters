@@ -2,11 +2,16 @@ body {
 	padding-top: 60px;
 }
 
+.container {
+  font-family: 'Sintony', sans-serif; 
+}
+
 .home_image{
 	text-align: center;
 }
 
-.hero-unit h1 {
+.hero-unit h1 { 
+	color: white;
 	font-size: 40px;
 }
 
@@ -18,9 +23,30 @@ body {
   font-family: 'Sintony', sans-serif; 
 }
 
+.hero-unit p { 
+	color: white;
+	font-size: 18px;
+	width: 50%;
+	line-height: normal;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.navbar .nav {
+	float: right;
+}
+
+.well {
+padding: 0px;
+margin-top: -10px;
+margin-bottom: 15px;
+background-color: #000000;
+}
 
 /*Image Links
 http://i.imgur.com/s7Ipa4U.jpg - beach vector
 http://i.imgur.com/eQ8jr9N.jpg - Starfish
 http://i.imgur.com/0AmZG1Z.jpg - Beach
 http://i.imgur.com/5KmqB5V.jpg - Sunny
+=======
+
+
