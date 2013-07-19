@@ -7,6 +7,6 @@ FactoryGirl.define do
     street "City Rd"
     postcode "NW1 34Q"
     city "London"    
-    product
+    product 
   end
 end

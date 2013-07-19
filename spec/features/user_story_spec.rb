@@ -67,10 +67,9 @@ end
 describe "adding a new product" do
   it "should add a new poster to the database" do
     visit '/products'
-    click_link "Add a product"
+    click_link "Upload a Poster"
     expect(page).to have_content "Add New Product"
     fill_in "Title", :with => "May the force be with you"
-    fill_in "Image", :with => "moti1.jpg"
     fill_in "Price", :with => "1100"
     expect(Product.count).to eql 0
     click_button "Create Product"
@@ -79,7 +78,7 @@ describe "adding a new product" do
   end
 end
 
-describe "ordering a product" do
+describe "ordering a product" do #, :js => true do
   it "should show order confirmation" do
     order = FactoryGirl.create(:order)
     visit order_path(order)
