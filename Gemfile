@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-
+gem 'protected_attributes'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -28,6 +28,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+gem "paperclip", '~> 3.0'
+gem "aws-sdk"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
