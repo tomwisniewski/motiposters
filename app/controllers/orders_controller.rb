@@ -7,13 +7,13 @@ class OrdersController < ApplicationController
     create_charge(params[:order][:stripe_card_token], @order.product.price)
     if @order.save!
       OrderMailer.order_confirmation(@order).deliver
-      redirect_to order_path(@order.id) 
+      redirect_to order_path(@order) 
     else
-      redirect_to product_path(params[:id])
+      redirect_to product_path(@order.product)
     end
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to root_url
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to root_url
   end
 
   def show
