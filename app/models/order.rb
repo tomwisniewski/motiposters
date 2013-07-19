@@ -9,5 +9,11 @@ class Order < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 
+  after_create :send_confirmation_email
+
+
+  def send_confirmation_email
+    OrderMailer.order_confirmation(self).deliver
+  end
 
 end
