@@ -5,17 +5,32 @@
 
 <div class="well"></div>
 
-<% @products.each_slice(2) do | product_left, product_right | %>
+<% @products.each_slice(4) do | product_1, product_2, product_3, product_4 | %>
   <div class="row" >
-    <div class="span6 home_image">
-      <h3><%= link_to product_left.title, product_path(product_left) %></h3>
-      <p><%= link_to image_tag(product_left.avatar.url(:medium)), product_path(product_left)%></p>
-      <p>&pound;<%= product_left.price %></p>
+    <div class="span3 home_image">
+      <h3><%= link_to product_1.title, product_path(product_1) %></h3>
+      <p><%= link_to image_tag(product_1.avatar.url(:medium)), product_path(product_1)%></p>
+      <p>&pound;<%= product_1.price %></p>
     </div>
-    <% if product_right %>
-      <div class="span6 home_image">
-        <h3><%= link_to product_right.title, product_path(product_right) %></h3>        <p><%= link_to image_tag(product_right.avatar.url(:medium)), product_path(product_right)%></p>
-        <p>&pound;<%= product_right.price %></p>
+    <% if product_2 %>
+      <div class="span3 home_image">
+        <h3><%= link_to product_2.title, product_path(product_2) %></h3>
+        <p><%= link_to image_tag(product_2.avatar.url(:medium)), product_path(product_2)%></p>
+        <p>&pound;<%= product_2.price %></p>
+      </div>
+    <% end %>
+    <% if product_3 %>
+      <div class="span3 home_image">
+      <h3><%= link_to product_3.title, product_path(product_3) %></h3>
+        <p><%= link_to image_tag(product_3.avatar.url(:medium)), product_path(product_3)%></p>
+        <p>&pound;<%= product_3.price %></p>
+      </div>
+    <% end %>
+    <% if product_4 %>
+      <div class="span3 home_image">
+        <h3><%= link_to product_4.title, product_path(product_4) %></h3>
+        <p><%= link_to image_tag(product_4.avatar.url(:medium)), product_path(product_4)%></p>
+        <p>&pound;<%= product_4.price %></p>
       </div>
     <% end %>
   </div>
