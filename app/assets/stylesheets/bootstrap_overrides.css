@@ -10,17 +10,18 @@ body {
 	text-align: center;
 }
 
-.hero-unit h1 { 
-	color: white;
-	font-size: 40px;
+.navbar .nav {
+	float: right;
 }
 
 .hero-unit {
-  background: url(http://i.imgur.com/eQ8jr9N.jpg)
+  background: url(http://i.imgur.com/5KmqB5V.jpg);
+  padding : 30px;
 }
 
-.container {
-  font-family: 'Sintony', sans-serif; 
+.hero-unit h1 { 
+	color: white;
+	font-size: 40px;
 }
 
 .hero-unit p { 
@@ -30,9 +31,6 @@ body {
 	line-height: normal;
 	margin-top: 15px;
 	margin-bottom: 15px;
-}
-.navbar .nav {
-	float: right;
 }
 
 .well {
