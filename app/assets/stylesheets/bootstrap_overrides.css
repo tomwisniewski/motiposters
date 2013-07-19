@@ -2,10 +2,30 @@ body {
 	padding-top: 60px;
 }
 
+.container {
+  font-family: 'Sintony', sans-serif; 
+}
+
 .home_image{
 	text-align: center;
 }
 
-.hero-unit h1 {
+.hero-unit {
+	background-image: url(http://www.picomazing.com/wp-content/uploads/2013/05/Vector-design-wallpaper-background-large-new-9.jpg); 
+}
+
+.hero-unit h1 { 
+	color: white;
 	font-size: 40px;
+}
+
+.hero-unit p { 
+	color: white;
+	font-size: 18px;
+	width: 50%;
+	line-height: normal;
+	margin-top: 15px;
+}
+.navbar .nav {
+	float: right;
 }
