@@ -2,7 +2,7 @@
 
 <h2>MotiPoster - <%= @product.title %></h2>
 
-<%= image_tag(@product.image) %>
+<%= image_tag(@product.avatar.url(:medium)) %>
 
 <p>&pound;<%= @product.price %></p>
 
