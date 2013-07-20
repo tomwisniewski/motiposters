@@ -8,5 +8,9 @@
   <%= f.label :avatar, "Image" %>
   <%= f.file_field :avatar %>
   <br/>
-  <%= f.submit %>
+  <% if @product.new_record? %>
+    <%= f.submit "Create Product", :class => "btn" %>
+  <% else %>
+    <%= f.submit "Update Product", :class => "btn" %>
+  <% end %>
 <% end %>

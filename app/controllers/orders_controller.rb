@@ -5,10 +5,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     create_charge(params[:order][:stripe_card_token], @order.product.price)
-    if @order.save!
+    if @order.save
       OrderMailer.order_confirmation(@order).deliver
       redirect_to order_path(@order) 
-    else
+    else      
       redirect_to product_path(@order.product)
     end
   rescue Stripe::CardError => e
@@ -37,7 +37,6 @@ private
       :description => 'Rails Stripe customer',
       :currency    => 'GBP'
     )
-
   end
 
 end

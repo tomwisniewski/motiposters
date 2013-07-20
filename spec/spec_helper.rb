@@ -25,6 +25,8 @@ RSpec.configure do |config|
   
   config.before(:each) do
     DatabaseCleaner.strategy = :truncation, {:except => %w[products]}
+    ActionMailer::Base.deliveries.clear
+    Product.any_instance.stub(:save_attached_files).and_return(true)
   end
 
   # config.before(:each, :js => true) do

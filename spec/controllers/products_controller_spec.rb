@@ -11,11 +11,11 @@ describe ProductsController do
       it "adds a product to the database and redirects to the products index page" do
         expect(Product.count).to eql 1
         post 'create',  :product => 
-            { :title => "New poster",
-              :image => "moti1.jpg",
-              :price => "1500"}
+            { :title => "New poster", :price => "1500", :avatar => fixture_file_upload('test.png', 'image/png')}
         response.should redirect_to products_path
         expect(Product.count).to eql 2
+        expect(Product.last.title).to eq("New poster")
+        expect(Product.last.price).to eq(1500)        
       end
     end
   end

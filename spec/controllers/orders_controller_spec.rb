@@ -18,6 +18,7 @@ describe OrdersController do
     end
 
     it "should add processed order to database" do
+      expect(Order.count).to be(1)
       Order.last.email.should eq("john@example.com")
     end
   end

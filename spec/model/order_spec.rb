@@ -1,33 +1,33 @@
 require 'spec_helper'
 
 describe Order do
-  let(:order){ FactoryGirl.build(:order) }
-      # Order.new(name: "Exemple User", email: "name.surname@gmail.com", street: "Exemple street", city: "Exemple city", postcode: "8TEST")}
 
-  subject {order}
+  let(:order) { FactoryGirl.build(:order) }
+
+  subject { order }
+
   it { should respond_to(:name)}
 
   describe "when name is not present" do
-    before {order.name= " "}
+    before { subject.name = nil }
     it {should_not be_valid}
   end
 
   describe "when email is not prensent" do
-    before {order.email= " "}
+    before { subject.email = nil }
     it {should_not be_valid}
   end
 
-  describe "when name is to long" do
-    before {order.name = "a" * 51}
+  describe "when name is too long" do
+    before { subject.name = "a" * 51 }
     it {should_not be_valid}
   end
 
   describe "when email format is invalid" do
     it "should be invalid" do
       addresses = %w[user@foo,com user_at_foo.org]
-      addresses.each do |invalid_address|
-        order.email = invalid_address
-        expect(order).not_to be_valid
+        subject.email = invalid_address
+        expect(subject).not_to be_valid
       end
     end
   end
@@ -36,8 +36,8 @@ describe Order do
     it "should be valid" do
       addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
       addresses.each do |valid_address|
-        order.email = valid_address
-        expect(order).to be_valid
+        subject.email = valid_address        
+        expect(subject).to be_valid
       end
     end
   end
